@@ -1,0 +1,27 @@
+#!/bin/bash
+source "$(git --exec-path)/git-sh-setup"
+
+USAGE=$(cat <<EOF
+<destination> <remote> <ref>
+    Create a new directory named <destination> containing the contents of the
+    specified <remote> repository at the specified <ref>, preserving the
+    history of the remote repository.
+EOF
+)
+
+function __subtree_import() {
+    if [[ $# == 3 ]]; then
+        local destination=$1
+        local remote=$2
+        local ref=$3
+
+        git remote add -f $destination $remote
+        git merge -s ours --no-commit $ref
+        git read-tree --prefix=$destination -u $ref
+        git commit -am "$destination: import from $remote $ref"
+    else
+        usage
+    fi
+}
+
+__subtree_import $@
