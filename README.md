@@ -9,6 +9,6 @@ Place this script in your `$PATH` and run
 
     $ git import-subtree <destination> <remote> <ref>
 
-to create a new directory named <destination> containing the contents of the
-specified <remote> repository at the specified <ref>, preserving the history of
-the remote repository.
+to create a new directory named `<destination>` containing the contents of the
+specified `<remote>` repository at the specified `<ref>`, preserving the
+history of the remote repository.
