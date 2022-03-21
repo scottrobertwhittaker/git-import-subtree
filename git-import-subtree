@@ -16,7 +16,7 @@ function __subtree_import() {
         local ref=$3
 
         git remote add -f $destination $remote
-        git merge -s ours --no-commit $ref
+        git merge -s ours --no-commit --allow-unrelated-histories $ref
         git read-tree --prefix=$destination -u $ref
         git commit -am "$destination: import from $remote $ref"
     else
